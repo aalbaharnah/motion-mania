@@ -19,14 +19,6 @@ function getPreferredDelegates(): TensorflowModelDelegate[] {
     return ['android-gpu'];
 }
 
-function ensureArrayBuffer(input: Uint8Array): ArrayBuffer {
-    const buffer = input.buffer;
-    if (buffer instanceof ArrayBuffer) {
-        return buffer;
-    }
-    return input.slice().buffer;
-}
-
 export function usePoseDetectorModel() {
     const delegates = useMemo(getPreferredDelegates, []);
     return useTensorflowModel(MOVENET_MODEL_SOURCE, delegates);
@@ -37,7 +29,10 @@ export function runPoseInference(
     resized_buffer: Uint8Array,
     timestamp = Date.now(),
 ): PoseFrame | null {
-    const output_buffers = model.runSync([ensureArrayBuffer(resized_buffer)]);
+    'worklet';
+
+    const input_buffer = resized_buffer.buffer as ArrayBuffer;
+    const output_buffers = model.runSync([input_buffer]);
     const first_output = output_buffers[0];
     if (first_output == null) {
         return null;

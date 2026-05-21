@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { DodgeRushScreen } from '@/mini-games/dodge-rush/dodge-rush.screen';
+import { SmackAttackScreen } from '@/mini-games/smack-attack/smack-attack.screen';
 import { useGameStore } from '@/store/game.store';
 
 const GAME_META: Record<string, { name: string; emoji: string }> = {
@@ -43,6 +44,10 @@ export default function MiniGameScreen() {
 
     if (mini_game_id === 'dodge-rush') {
         return <DodgeRushScreen />;
+    }
+
+    if (mini_game_id === 'smack-attack') {
+        return <SmackAttackScreen />;
     }
 
     return (

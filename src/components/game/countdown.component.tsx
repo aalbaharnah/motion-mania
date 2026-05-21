@@ -29,7 +29,6 @@ export function Countdown({ is_visible, start_from = 3, on_complete }: Countdown
             set_countdown_value((previous) => {
                 if (previous <= 1) {
                     clearInterval(interval_id);
-                    on_complete?.();
                     return 0;
                 }
                 return previous - 1;
@@ -38,6 +37,12 @@ export function Countdown({ is_visible, start_from = 3, on_complete }: Countdown
 
         return () => clearInterval(interval_id);
     }, [is_visible, start_from, on_complete]);
+
+    useEffect(() => {
+        if (is_visible && countdown_value === 0) {
+            on_complete?.();
+        }
+    }, [countdown_value, is_visible, on_complete]);
 
     useEffect(() => {
         if (!is_visible || countdown_value <= 0) {

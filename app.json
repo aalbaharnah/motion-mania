@@ -45,7 +45,8 @@
           "enableCoreMLDelegate": true,
           "enableAndroidGpuLibraries": true
         }
-      ]
+      ],
+      "expo-audio"
     ],
     "experiments": {
       "typedRoutes": true,

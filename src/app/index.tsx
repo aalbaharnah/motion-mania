@@ -6,7 +6,7 @@ import { MiniGameCard } from '@/components/ui/mini-game-card.component';
 
 const MINI_GAMES = [
   { id: 'dodge-rush', name: 'Dodge Rush', emoji: '🏃', description: 'Dodge flying obstacles with your body!', ready: true },
-  { id: 'smack-attack', name: 'Smack Attack', emoji: '👋', description: 'Slap the creatures before they escape!', ready: false },
+  { id: 'smack-attack', name: 'Smack Attack', emoji: '👋', description: 'Slap the creatures before they escape!', ready: true },
   { id: 'pose-panic', name: 'Pose Panic', emoji: '🧍', description: 'Strike the pose before time runs out!', ready: false },
   { id: 'dance-madness', name: 'Dance Madness', emoji: '💃', description: 'Match the moves to the beat!', ready: false },
   { id: 'balance-chaos', name: 'Balance Chaos', emoji: '⚖️', description: 'Stay inside the moving zones!', ready: false },

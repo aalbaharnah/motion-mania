@@ -4,7 +4,7 @@ import {
     Camera,
     useCameraDevice,
     useCameraPermission,
-    useSkiaFrameProcessor,
+    useFrameProcessor,
 } from 'react-native-vision-camera';
 import { useResizePlugin } from 'vision-camera-resize-plugin';
 
@@ -29,11 +29,9 @@ export function CameraEngine({ pose_tracker }: CameraEngineProps) {
         }
     }, [hasPermission, requestPermission]);
 
-    const frame_processor = useSkiaFrameProcessor(
+    const frame_processor = useFrameProcessor(
         (frame) => {
             'worklet';
-
-            frame.render();
 
             const model = boxed_model?.unbox();
             if (model == null) {

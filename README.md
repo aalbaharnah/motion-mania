@@ -11,7 +11,7 @@ A motion-based party game built with Expo and React Native. Players use their bo
 | Game | Description | Status |
 |------|-------------|--------|
 | 🏃 Dodge Rush | Dodge flying obstacles with your body | Available |
-| 👋 Smack Attack | Slap the creatures before they escape | Coming soon |
+| 👋 Smack Attack | Slap the creatures before they escape | Available |
 | 🧍 Pose Panic | Strike the pose before time runs out | Coming soon |
 | 💃 Dance Madness | Match the moves to the beat | Coming soon |
 | ⚖️ Balance Chaos | Stay inside the moving zones | Coming soon |
