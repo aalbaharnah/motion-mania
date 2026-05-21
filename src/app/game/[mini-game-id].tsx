@@ -1,6 +1,9 @@
 import { router, useLocalSearchParams } from 'expo-router';
+import { useEffect } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { useGameStore } from '@/store/game.store';
 
 // Phase 6: import DodgeRushScreen from '@/mini-games/dodge-rush/dodge-rush.screen';
 
@@ -13,19 +16,41 @@ const GAME_META: Record<string, { name: string; emoji: string }> = {
 };
 
 export default function MiniGameScreen() {
+    const set_active_game = useGameStore((state) => state.setActiveGame);
+    const set_game_phase = useGameStore((state) => state.setGamePhase);
     const { 'mini-game-id': mini_game_id } = useLocalSearchParams<{ 'mini-game-id': string }>();
 
     // Phase 6: if (mini_game_id === 'dodge-rush') return <DodgeRushScreen />;
 
-    const meta = GAME_META[mini_game_id ?? ''] ?? { name: 'Unknown', emoji: '❓' };
+    const game_key = mini_game_id ?? '';
+    const is_known_game = game_key in GAME_META;
+    const meta = GAME_META[game_key] ?? { name: 'Unknown', emoji: '❓' };
+
+    useEffect(() => {
+        if (is_known_game) {
+            set_active_game(game_key);
+            set_game_phase('idle');
+        }
+
+        return () => {
+            set_active_game(null);
+            set_game_phase('idle');
+        };
+    }, [game_key, is_known_game, set_active_game, set_game_phase]);
+
+    const handle_back = () => {
+        set_active_game(null);
+        set_game_phase('idle');
+        router.back();
+    };
 
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.content}>
                 <Text style={styles.emoji}>{meta.emoji}</Text>
                 <Text style={styles.name}>{meta.name}</Text>
-                <Text style={styles.label}>Coming Soon</Text>
-                <Pressable style={styles.back_btn} onPress={() => router.back()}>
+                <Text style={styles.label}>{is_known_game ? 'Coming Soon' : 'Mini-game not found'}</Text>
+                <Pressable style={styles.back_btn} onPress={handle_back}>
                     <Text style={styles.back_text}>← Back to Lobby</Text>
                 </Pressable>
             </View>
