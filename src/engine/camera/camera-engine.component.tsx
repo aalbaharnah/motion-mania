@@ -8,16 +8,20 @@ import {
 } from 'react-native-vision-camera';
 import { useResizePlugin } from 'vision-camera-resize-plugin';
 
-import { usePoseTracker } from '@/engine/camera/use-pose-tracker.hook';
+import type { PoseTrackerState } from '@/engine/camera/use-pose-tracker.hook';
 import { runPoseInference } from '@/engine/pose/pose-detector.service';
 
 const MOVENET_INPUT_SIZE = 192;
 
-export function CameraEngine() {
+interface CameraEngineProps {
+    pose_tracker: PoseTrackerState;
+}
+
+export function CameraEngine({ pose_tracker }: CameraEngineProps) {
     const device = useCameraDevice('front');
     const { hasPermission, requestPermission } = useCameraPermission();
     const { resize } = useResizePlugin();
-    const { boxed_model, pose_shared_value, is_model_ready, model_error } = usePoseTracker();
+    const { boxed_model, pose_shared_value, is_model_ready, model_error } = pose_tracker;
 
     useEffect(() => {
         if (!hasPermission) {

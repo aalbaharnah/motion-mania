@@ -3,9 +3,8 @@ import { useEffect } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { DodgeRushScreen } from '@/mini-games/dodge-rush/dodge-rush.screen';
 import { useGameStore } from '@/store/game.store';
-
-// Phase 6: import DodgeRushScreen from '@/mini-games/dodge-rush/dodge-rush.screen';
 
 const GAME_META: Record<string, { name: string; emoji: string }> = {
     'dodge-rush': { name: 'Dodge Rush', emoji: '🏃' },
@@ -19,8 +18,6 @@ export default function MiniGameScreen() {
     const set_active_game = useGameStore((state) => state.setActiveGame);
     const set_game_phase = useGameStore((state) => state.setGamePhase);
     const { 'mini-game-id': mini_game_id } = useLocalSearchParams<{ 'mini-game-id': string }>();
-
-    // Phase 6: if (mini_game_id === 'dodge-rush') return <DodgeRushScreen />;
 
     const game_key = mini_game_id ?? '';
     const is_known_game = game_key in GAME_META;
@@ -43,6 +40,10 @@ export default function MiniGameScreen() {
         set_game_phase('idle');
         router.back();
     };
+
+    if (mini_game_id === 'dodge-rush') {
+        return <DodgeRushScreen />;
+    }
 
     return (
         <SafeAreaView style={styles.container}>
