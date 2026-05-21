@@ -8,7 +8,7 @@ import {
 
 import type { PoseFrame, PoseLandmark } from '@/engine/pose/pose.type';
 
-const MOVENET_MODEL_SOURCE = require('@/assets/models/movenet-lightning.tflite');
+const MOVENET_MODEL_SOURCE = require('../../../assets/models/movenet-lightning.tflite');
 const MOVENET_KEYPOINT_COUNT = 17;
 const MOVENET_VALUES_PER_KEYPOINT = 3;
 
