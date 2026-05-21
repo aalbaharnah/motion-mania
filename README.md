@@ -1,4 +1,6 @@
-<img width="200" height="200" alt="ChatGPT Image May 21, 2026, 02_39_16 PM" src="https://github.com/user-attachments/assets/4be36d3d-4a5f-4917-91bf-750bf3f40b81" />
+<p align="center">
+  <img width="200" height="200" alt="ChatGPT Image May 21, 2026, 02_39_16 PM" src="https://github.com/user-attachments/assets/4be36d3d-4a5f-4917-91bf-750bf3f40b81" />
+</p>
 
 # Move Mania
 
