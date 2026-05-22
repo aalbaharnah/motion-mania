@@ -14,7 +14,7 @@ const MINI_GAMES = [
 
 export default function LobbyScreen() {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView className="flex-1 bg-[#0A0A1A]">
       <View style={styles.header}>
         <Text style={styles.title}>MOVE MANIA</Text>
         <Text style={styles.subtitle}>🎮 Party Game</Text>
@@ -36,7 +36,6 @@ export default function LobbyScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#0A0A1A' },
   header: { alignItems: 'center', paddingVertical: 40, paddingHorizontal: 24 },
   title: { fontSize: 48, fontWeight: '900', color: '#FFFFFF', letterSpacing: 6 },
   subtitle: { fontSize: 18, color: '#88AAFF', marginTop: 6 },

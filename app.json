@@ -46,7 +46,17 @@
           "enableAndroidGpuLibraries": true
         }
       ],
-      "expo-audio"
+      "expo-audio",
+      "expo-image",
+      "expo-asset",
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/BalooBhaijaan2-VariableFont_wght.ttf"
+          ]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

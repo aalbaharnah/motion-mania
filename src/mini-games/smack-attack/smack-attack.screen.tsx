@@ -10,6 +10,7 @@ import { CameraEngine } from '@/engine/camera/camera-engine.component';
 import { usePoseTracker } from '@/engine/camera/use-pose-tracker.hook';
 import { useGameLoop } from '@/engine/game-loop/use-game-loop.hook';
 import { haptics_manager } from '@/engine/haptics/haptics-manager.service';
+import { useSmackAttackStore } from '@/mini-games/smack-attack/smack-attack.store';
 import {
     getExpiredTargets,
     getSpawnInterval,
@@ -18,7 +19,6 @@ import {
     spawnTarget,
     updateTargets,
 } from '@/mini-games/smack-attack/smack-attack.system';
-import { useSmackAttackStore } from '@/mini-games/smack-attack/smack-attack.store';
 import { useGameStore } from '@/store/game.store';
 import { useScoreStore } from '@/store/score.store';
 
