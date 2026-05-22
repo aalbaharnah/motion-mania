@@ -1,8 +1,8 @@
+import { MiniGameCard } from '@/components/ui/mini-game-card.component';
 import { router } from 'expo-router';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { MiniGameCard } from '@/components/ui/mini-game-card.component';
 
 const MINI_GAMES = [
   { id: 'dodge-rush', name: 'Dodge Rush', emoji: '🏃', description: 'Dodge flying obstacles with your body!', ready: true },
@@ -14,10 +14,10 @@ const MINI_GAMES = [
 
 export default function LobbyScreen() {
   return (
-    <SafeAreaView className="flex-1 bg-[#0A0A1A]">
-      <View style={styles.header}>
-        <Text style={styles.title}>MOVE MANIA</Text>
-        <Text style={styles.subtitle}>🎮 Party Game</Text>
+    <SafeAreaView className="flex-1 bg-white flex-row">
+      <View className="flex items-start p-4">
+        <Text>🎮 Party Game</Text>
+        <Text className='text-4xl font-bold'>MOVE MANIA</Text>
       </View>
       <ScrollView contentContainerStyle={styles.grid} showsVerticalScrollIndicator={false}>
         {MINI_GAMES.map((game) => (
@@ -36,9 +36,6 @@ export default function LobbyScreen() {
 }
 
 const styles = StyleSheet.create({
-  header: { alignItems: 'center', paddingVertical: 40, paddingHorizontal: 24 },
-  title: { fontSize: 48, fontWeight: '900', color: '#FFFFFF', letterSpacing: 6 },
-  subtitle: { fontSize: 18, color: '#88AAFF', marginTop: 6 },
-  grid: { paddingHorizontal: 20, paddingBottom: 40, gap: 16 },
+  grid: { paddingHorizontal: 20, paddingVertical: 18, gap: 16 },
 });
 

@@ -3,7 +3,7 @@
     "name": "move-mania",
     "slug": "move-mania",
     "version": "1.0.0",
-    "orientation": "default",
+    "orientation": "landscape",
     "icon": "./assets/images/icon.png",
     "scheme": "movemania",
     "userInterfaceStyle": "automatic",

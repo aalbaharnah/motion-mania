@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import { useGameStore } from '@/store/game.store';
 import { useScoreStore } from '@/store/score.store';
+import ScoreHudBox from './score-hud-box.component';
 
 function formatSeconds(milliseconds: number): string {
     const total_seconds = Math.max(0, Math.floor(milliseconds / 1000));
@@ -18,70 +19,16 @@ export function ScoreHud() {
     const elapsed_ms = useGameStore((state) => state.elapsed_ms);
 
     return (
-        <View pointerEvents="none" style={styles.container}>
-            <View style={styles.left_group}>
-                <View style={styles.panel}>
-                    <Text style={styles.label}>SCORE</Text>
-                    <Text style={styles.value}>{score}</Text>
-                </View>
-                <View style={styles.panel}>
-                    <Text style={styles.label}>COMBO</Text>
-                    <Text style={styles.value}>{combo} x{combo_multiplier}</Text>
-                </View>
+        <View pointerEvents="none" className='absolute top-4 left-0 right-0 flex-row justify-between px-8'>
+            <View className='flex-row gap-1'>
+                <ScoreHudBox label='SCORE' value={score} />
+                <ScoreHudBox label='COMBO' value={`${combo} x${combo_multiplier}`} />
             </View>
 
-            <View style={styles.right_group}>
-                <View style={styles.panel}>
-                    <Text style={styles.label}>LIVES</Text>
-                    <Text style={styles.value}>{'❤️'.repeat(Math.max(0, lives))}</Text>
-                </View>
-                <View style={styles.panel}>
-                    <Text style={styles.label}>TIME</Text>
-                    <Text style={styles.value}>{formatSeconds(elapsed_ms)}</Text>
-                </View>
+            <View className='flex-row gap-1'>
+                <ScoreHudBox label='LIVES' value={'❤️'.repeat(Math.max(0, lives))} />
+                <ScoreHudBox label='TIME' value={formatSeconds(elapsed_ms)} />
             </View>
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingHorizontal: 20,
-        paddingTop: 16,
-    },
-    left_group: {
-        flexDirection: 'row',
-        gap: 8,
-    },
-    right_group: {
-        flexDirection: 'row',
-        gap: 8,
-    },
-    panel: {
-        backgroundColor: 'rgba(10, 10, 26, 0.72)',
-        borderColor: 'rgba(255, 255, 255, 0.12)',
-        borderWidth: 1,
-        borderRadius: 12,
-        paddingVertical: 8,
-        paddingHorizontal: 12,
-        minWidth: 96,
-    },
-    label: {
-        color: '#88AAFF',
-        fontSize: 11,
-        fontWeight: '700',
-        letterSpacing: 0.8,
-    },
-    value: {
-        color: '#FFFFFF',
-        fontSize: 18,
-        fontWeight: '800',
-        marginTop: 2,
-    },
-});
